@@ -8,6 +8,8 @@
   const emptyState = document.getElementById("emptyState");
   const dialog = document.getElementById("detailDialog");
   const detailContent = document.getElementById("detailContent");
+  const submissionDialog = document.getElementById("submissionDialog");
+  const submissionForm = document.getElementById("submissionForm");
   let activeCategory = "all";
   let query = "";
 
@@ -150,6 +152,51 @@
   dialog.addEventListener("click", (event) => {
     if (event.target === dialog) closeDialog();
   });
+  document.getElementById("openSubmission").addEventListener("click", () => {
+    if (typeof submissionDialog.showModal === "function") submissionDialog.showModal();
+    else submissionDialog.setAttribute("open", "");
+  });
+  document.getElementById("submissionClose").addEventListener("click", () => {
+    if (typeof submissionDialog.close === "function") submissionDialog.close();
+    else submissionDialog.removeAttribute("open");
+  });
+  submissionDialog.addEventListener("click", (event) => {
+    if (event.target === submissionDialog) submissionDialog.close();
+  });
+  submissionForm.elements.source.addEventListener("input", (event) => {
+    event.target.setCustomValidity("");
+  });
+  submissionForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const formData = new FormData(submissionForm);
+    const sourceUrl = new URL(formData.get("source"));
+    if (sourceUrl.protocol !== "https:") {
+      submissionForm.elements.source.setCustomValidity("请使用 HTTPS 来源链接。");
+      submissionForm.elements.source.reportValidity();
+      return;
+    }
+
+    const fields = [
+      ["资源名称", formData.get("name")],
+      ["资源类型", formData.get("category")],
+      ["官方项目或资源链接", sourceUrl.href],
+      ["用途与适用场景", formData.get("purpose")],
+      ["权限、依赖或风险提示", formData.get("risk")],
+      ["宿主兼容性或维护信息", formData.get("notes") || "未提供"],
+    ];
+    const body = [
+      "拓展集候选资源审核申请",
+      "",
+      ...fields.flatMap(([label, value]) => [`${label}：`, value, ""]),
+      "我了解该候选资源需要维护者人工审核，通过后才会加入正式目录。",
+    ].join("\n");
+    const subject = `拓展集资源收录申请：${formData.get("name")}`;
+    document.getElementById("sendSubmission").href =
+      `mailto:Xiogbaolun2008@outlook.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    document.getElementById("submissionPreview").value = body;
+    document.getElementById("submissionResult").hidden = false;
+  });
+
   document.addEventListener("keydown", (event) => {
     if (event.key === "/" && !event.ctrlKey && !event.metaKey && !event.altKey &&
       !["INPUT", "TEXTAREA", "SELECT"].includes(document.activeElement.tagName)) {

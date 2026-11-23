@@ -185,6 +185,28 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .fact-icon { color: #608068; padding-right: 4px; }
 .risk-demo .fact-icon { color: #b87a42; }
 
+.submission { padding: 43px 12.5%; background: #f3f6f1; }
+.submission-content { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-top: 12px; }
+.submission-content h2 { margin: 0 0 8px; font-size: 20px; letter-spacing: -.5px; }
+.submission-content p, .submission-note { max-width: 660px; margin: 0; color: #788178; font-size: 10px; line-height: 1.9; }
+.submission-button { display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; gap: 12px; padding: 10px 14px; border: 0; border-radius: 3px; background: var(--green); color: #fff; font-size: 11px; cursor: pointer; }
+.submission-button:hover { background: #1d593f; }
+.submission-note { margin-top: 13px; font-size: 9px; }
+.submission-dialog { position: relative; width: min(570px, calc(100vw - 28px)); max-height: min(88vh, 800px); padding: 0; border: 1px solid #e6e9e2; border-radius: 6px; background: #fbfcf9; color: var(--ink); box-shadow: 0 22px 80px rgba(19,35,23,.25); overflow: auto; }
+.submission-dialog::backdrop { background: rgba(24,36,28,.52); backdrop-filter: blur(3px); }
+.submission-dialog-body { padding: 28px; }
+.submission-dialog-body > h2 { margin: 8px 0; font-size: 22px; }
+.submission-intro { margin: 0 0 18px; color: #737d74; font-size: 10px; line-height: 1.8; }
+.submission-field { display: grid; gap: 6px; margin: 12px 0; color: #49544b; font-size: 10px; }
+.submission-field b { color: #b3685c; }
+.submission-field input, .submission-field select, .submission-field textarea { width: 100%; min-width: 0; padding: 9px 10px; border: 1px solid #e1e6de; border-radius: 3px; background: #fff; color: var(--ink); font-size: 11px; }
+.submission-field textarea { resize: vertical; line-height: 1.65; }
+.submission-privacy { margin: 16px 0; padding: 10px; background: #f0f4ee; color: #69756b; font-size: 9px; line-height: 1.8; }
+.submission-result { margin-top: 18px; padding-top: 15px; border-top: 1px solid var(--line); }
+.submission-result > p { color: #526d58; font-size: 10px; line-height: 1.8; }
+.submission-result .submission-button { margin: 5px 0; }
+.submission-result textarea { min-height: 130px; }
+
 @media (min-width: 1500px) {
   .hero, .directory, .about { padding-left: max(12.5%, calc((100% - 1120px)/2)); padding-right: max(12.5%, calc((100% - 1120px)/2)); }
 }
@@ -192,6 +214,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   .hero { padding-left: 8%; }
   .hero-art { right: 6%; transform: translateY(-50%) scale(.88); transform-origin: center right; }
   .directory { padding-left: 8%; padding-right: 8%; }
+  .submission { padding-left: 8%; padding-right: 8%; }
   .directory-layout { grid-template-columns: 170px minmax(0,1fr); gap: 28px; }
   .about { padding-left: 8%; padding-right: 8%; }
 }
@@ -262,6 +285,10 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   .detail-body { padding: 20px 19px 24px; }
   .detail-cover { padding-left: 19px; }
   .detail-facts { grid-template-columns: 1fr; }
+  .submission { padding: 30px 6%; }
+  .submission-content { align-items: flex-start; flex-direction: column; gap: 14px; }
+  .submission-content h2 { font-size: 18px; }
+  .submission-dialog-body { padding: 22px 18px; }
   .list-footer { font-size: 8px; }
 }
 @media (prefers-reduced-motion: reduce) {

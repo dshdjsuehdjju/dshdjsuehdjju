@@ -116,6 +116,18 @@
         </div>
       </section>
 
+      <section class="submission" id="submit-resource">
+        <div class="section-kicker">COMMUNITY SUBMISSIONS <span>—</span> 社区推荐</div>
+        <div class="submission-content">
+          <div>
+            <h2>发现了值得推荐的资源？</h2>
+            <p>提交候选信息供维护者人工核验。审核通过后才会加入目录；此页面不会上传插件文件或自动发布资源。</p>
+          </div>
+          <button class="submission-button" id="openSubmission" type="button">推荐一个资源 <span aria-hidden="true">↗</span></button>
+        </div>
+        <p class="submission-note">提交会生成邮件草稿，由你检查并手动发送。请勿在表单中填写密码、令牌等敏感信息。</p>
+      </section>
+
       <section class="about" id="about">
         <div class="about-mark" aria-hidden="true">✳</div>
         <div>
@@ -133,6 +145,57 @@
       <span class="developer-credit">开发者：熊保伦 · <a href="mailto:Xiogbaolun2008@outlook.com">Xiogbaolun2008@outlook.com</a> · AI 协作：GitHub Copilot</span>
       <span>为更顺手的工作流而整理 <span class="footer-star">✳</span></span>
     </footer>
+
+    <dialog class="submission-dialog" id="submissionDialog" aria-labelledby="submissionTitle">
+      <button class="dialog-close" id="submissionClose" type="button" aria-label="关闭推荐表单">×</button>
+      <div class="submission-dialog-body">
+        <p class="section-kicker">RESOURCE REVIEW <span>—</span> 候选资源审核</p>
+        <h2 id="submissionTitle">推荐一个资源</h2>
+        <p class="submission-intro">请提供公开来源和必要的使用信息。维护者会先核验来源、用途与风险，审核通过后才会收录。</p>
+        <form id="submissionForm">
+          <label class="submission-field">
+            <span>资源名称 <b aria-hidden="true">*</b></span>
+            <input name="name" type="text" maxlength="100" required autocomplete="off">
+          </label>
+          <label class="submission-field">
+            <span>资源类型 <b aria-hidden="true">*</b></span>
+            <select name="category" required>
+              <option value="">请选择类型</option>
+              <option>MCP 服务</option>
+              <option>Skill</option>
+              <option>Agent</option>
+              <option>Canvas 扩展</option>
+            </select>
+          </label>
+          <label class="submission-field">
+            <span>官方项目或资源链接（HTTPS） <b aria-hidden="true">*</b></span>
+            <input name="source" type="url" required placeholder="https://github.com/owner/project">
+          </label>
+          <label class="submission-field">
+            <span>用途与适用场景 <b aria-hidden="true">*</b></span>
+            <textarea name="purpose" rows="3" maxlength="500" required placeholder="它能做什么？适合什么工作流？"></textarea>
+          </label>
+          <label class="submission-field">
+            <span>权限、依赖或风险提示 <b aria-hidden="true">*</b></span>
+            <textarea name="risk" rows="3" maxlength="500" required placeholder="例如所需权限、运行环境、数据访问或已知限制"></textarea>
+          </label>
+          <label class="submission-field">
+            <span>宿主兼容性或维护信息（选填）</span>
+            <textarea name="notes" rows="2" maxlength="300" placeholder="请注明依据；未核实的信息可留空"></textarea>
+          </label>
+          <p class="submission-privacy">点击生成草稿不会发送邮件，也不会将资源加入目录。请检查草稿后自行发送；邮件由维护者人工审核。</p>
+          <button class="submission-button" type="submit">生成邮件草稿</button>
+        </form>
+        <div class="submission-result" id="submissionResult" hidden aria-live="polite">
+          <p>草稿已准备好。请检查内容并手动发送；审核通过前不会显示在目录中。</p>
+          <a class="submission-button" id="sendSubmission" href="#">在邮件客户端中打开草稿 <span aria-hidden="true">↗</span></a>
+          <label class="submission-field">
+            <span>邮件内容（也可手动复制）</span>
+            <textarea id="submissionPreview" rows="8" readonly></textarea>
+          </label>
+        </div>
+      </div>
+    </dialog>
 
     <dialog class="detail-dialog" id="detailDialog" aria-labelledby="detailTitle">
       <div id="detailContent"></div>
