@@ -154,6 +154,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .about-stamp span:last-child { font-size: 13px; color: #d28a57; margin-top: 1px; }
 .site-footer { min-height: 64px; padding: 0 6.2%; display: flex; align-items: center; justify-content: space-between; color: #9aa198; font-size: 9px; background: #fafbf8; }
 .footer-brand { display: flex; align-items: center; color: #334138; font-size: 13px; gap: 6px; }
+.developer-credit { overflow-wrap: anywhere; }
+.developer-credit a { color: inherit; }
 .brand-mark.small { width: 15px; height: 15px; gap: 2px; }
 
 .detail-dialog { width: min(610px, calc(100vw - 28px)); max-height: min(86vh, 780px); padding: 0; border: 0; border-radius: 6px; background: #fbfcf9; color: var(--ink); box-shadow: 0 22px 80px rgba(19,35,23,.25); overflow: auto; }
